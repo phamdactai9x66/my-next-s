@@ -1,0 +1,8 @@
+{
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    // Enables tab completions.
+    //  - on: Tab complete will insert the best matching suggestion when pressing tab.
+    //  - off: Disable tab completions.
+    //  - onlySnippets: Tab complete snippets when their prefix match. Works best when 'quickSuggestions' aren't enabled.
+    "editor.tabCompletion": "off"
+}
