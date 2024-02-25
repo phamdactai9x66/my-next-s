@@ -1,34 +1,24 @@
-"use client";
+// "use client";
 
 import Table from "@/components/Table";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-import React from "react";
+// import { usePathname } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import React, { Suspense } from "react";
+import Loading from "./loading";
+import { notFound } from "next/navigation";
+import { formatData } from "../_lib/utils";
 
-const DashboardLayout = ({ children }) => {
-  const path = usePathname();
-  const router = useRouter();
-
-  const onBackPreStep = () => {
-    router.back();
-  };
-
+const DashboardLayout = ({ children, team, listuser }) => {
+  // notFound();
+  formatData();
   return (
     <React.Fragment>
-      <Link href={"/dashboard/video_game"} title=" Video Game">
-        Video Game
-      </Link>{" "}
-      |
-      <Link href={"/dashboard/book"} title="Book">
-        Book
-      </Link>{" "}
-      |
-      <Link href={"/dashboard"} title="Dashboard">
-        Dashboard
-      </Link>
-      |<button onClick={onBackPreStep}>Back</button>
-      {children}
+      <Suspense fallback={<Loading />}>
+        {children}
+        {/* {team}
+        {listuser} */}
+      </Suspense>
       <Table />
     </React.Fragment>
   );

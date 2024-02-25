@@ -1,46 +1,39 @@
+"use client";
 import React from "react";
+import useSWR from "swr";
+import TableAction from "./TableAction";
+
+export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export const LIKE = "https://my-json-server.typicode.com/typicode/demo/posts";
 
 const Table = () => {
+  const { data, error, isLoading } = useSWR(LIKE, fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
+  if (isLoading) return null;
+
   return (
     <React.Fragment>
       <h2>HTML Table</h2>
 
       <table>
         <tr>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
+          <th>Title</th>
+          <th></th>
         </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-        </tr>
+
+        {(data || []).map((e) => {
+          return (
+            <tr key={e.id}>
+              <td>{e.title}</td>
+              <TableAction props={e} />
+            </tr>
+          );
+        })}
       </table>
     </React.Fragment>
   );
