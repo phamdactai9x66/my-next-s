@@ -20,12 +20,6 @@
 
 
 @layer base {
-  body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom,
-        transparent,
-        rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  }
 
 
 
@@ -47,7 +41,11 @@
   }
 }
 
-@layer components {}
+@layer components {
+  .container {
+    @apply mx-auto max-w-screen-xl
+  }
+}
 
 @layer utilities {
 
@@ -65,5 +63,10 @@
   .liItem {
     @apply bg-red-500 p-2 rounded-lg;
 
+  }
+
+  .btn {
+    @apply capitalize p-1 rounded text-xs outline outline-1;
+    
   }
 }
