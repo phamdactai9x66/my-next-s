@@ -49,24 +49,7 @@
 
 @layer utilities {
 
-  .colorsDefault {
-    background-color: blue;
-  }
-
   .container {
-
-
-    @apply mx-auto max-w-screen-xl 
-
-  }
-
-  .liItem {
-    @apply bg-red-500 p-2 rounded-lg;
-
-  }
-
-  .btn {
-    @apply capitalize p-1 rounded text-xs outline outline-1;
-    
+    @apply mx-auto max-w-3xl;
   }
 }
